@@ -1,12 +1,23 @@
 {
-  "name": "jlt-tech-career",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "jlt-tech-career",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "meeting1:sleep": "node src/meeting-1-promises/sleep.js",
+        "meeting1:readFilePromise": "node src/meeting-1-promises/readFilePromise.js",
+        "meeting1:promiseAll": "node src/meeting-1-promises/promiseAll.js",
+        "meeting1:cancablePromise": "node src/meeting-1-promises/cancablePromise.js",
+        "meeting1:resolve": "node src/meeting-1-promises/resolve.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "prettier": "^3.3.3"
+    },
+    "dependencies": {
+        "fs": "^0.0.1-security",
+        "path": "^0.12.7"
+    }
 }

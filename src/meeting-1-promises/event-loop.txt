@@ -1,0 +1,5 @@
+// simulator 
+// https://www.jsv9000.app/
+
+// difference-between-microtask-and-macrotask-queue
+// https://dev.to/jeetvora331/difference-between-microtask-and-macrotask-queue-in-the-event-loop-4i4i
