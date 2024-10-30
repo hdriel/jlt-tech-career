@@ -8,7 +8,8 @@
         "meeting1:readFilePromise": "node src/meeting-1-promises/readFilePromise.js",
         "meeting1:promiseAll": "node src/meeting-1-promises/promiseAll.js",
         "meeting1:cancablePromise": "node src/meeting-1-promises/cancablePromise.js",
-        "meeting1:resolve": "node src/meeting-1-promises/resolve.js"
+        "meeting1:resolve": "node src/meeting-1-promises/resolve.js",
+        "meeting4:resolve": "node src/meeting-4-game/main.js"
     },
     "keywords": [],
     "author": "",
@@ -18,6 +19,7 @@
     },
     "dependencies": {
         "fs": "^0.0.1-security",
-        "path": "^0.12.7"
+        "path": "^0.12.7",
+        "prompt-sync": "^4.2.0"
     }
 }
