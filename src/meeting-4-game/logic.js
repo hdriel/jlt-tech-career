@@ -50,42 +50,73 @@ function isFullBoard(matrix) {
 }
 module.exports.isFullBoard = isFullBoard;
 
-function checkBoardWinner(matrix, players) {
+function isStrikeRow(matrix, player) {
     const N = matrix.length;
+    for (let r = 0; r < N; r++) {
+        let playerCounter = 0;
 
-    for (const player of players) {
-        const rows = [
-            [undefined, undefined, undefined],
-            [undefined, undefined, undefined],
-            [undefined, undefined, undefined],
-        ];
-        const cols = [
-            [undefined, undefined, undefined],
-            [undefined, undefined, undefined],
-            [undefined, undefined, undefined],
-        ];
-        const primaryDiagonal = [undefined, undefined, undefined];
-        const secondaryDiagonal = [undefined, undefined, undefined];
-
-        for (let r = 0; r < N; r++) {
-            for (let c = 0; c < N; c++) {
-                if (!isDefined(matrix[r][c])) continue; // thinking
-
-                const isPlayerItem = matrix[r][c] === player;
-                if (r === c) primaryDiagonal[r] = isPlayerItem;
-                if (r + c === N - 1) secondaryDiagonal[r] = isPlayerItem;
-                rows[r][c] = isPlayerItem;
-                cols[r][c] = isPlayerItem;
-            }
+        for (let c = 0; c < N; c++) {
+            const isPlayerItem = matrix[r][c] === player;
+            if (isPlayerItem) playerCounter++;
         }
 
-        const isStrikeRow = rows.some((row) => row.every((v) => v));
-        const isStrikeCol = cols.some((col) => col.every((v) => v));
-        const isStrikePD = primaryDiagonal.every((v) => v);
-        const isStrikeSD = secondaryDiagonal.every((v) => v);
+        if (playerCounter === N) return true;
+    }
 
-        const isGameOver = isStrikeRow || isStrikeCol || isStrikePD || isStrikeSD;
-        if (isGameOver) return player;
+    return false;
+}
+
+function isStrikeCol(matrix, player) {
+    const N = matrix.length;
+    for (let c = 0; c < N; c++) {
+        let playerCounter = 0;
+
+        for (let r = 0; r < N; r++) {
+            const isPlayerItem = matrix[r][c] === player;
+            if (isPlayerItem) playerCounter++;
+        }
+
+        if (playerCounter === N) return true;
+    }
+
+    return false;
+}
+
+function isStrikeDiagonals(matrix, player) {
+    const N = matrix.length;
+    // Primary Diagonal
+    {
+        let playerCounter = 0;
+        for (let i = 0; i < N; i++) {
+            const isPlayerItem = matrix[i][i] === player;
+            if (isPlayerItem) playerCounter++;
+        }
+        if (playerCounter === N) return true;
+    }
+
+    // Secondary Diagonal
+    {
+        let playerCounter = 0;
+        for (let i = 0, j = N - 1; i < N; i++, j--) {
+            const isPlayerItem = matrix[i][j] === player;
+            if (isPlayerItem) playerCounter++;
+        }
+        if (playerCounter === N) return true;
+    }
+
+    return false;
+}
+
+function checkBoardWinner(matrix, players) {
+    for (const player of players) {
+        const _isStrikeRow = isStrikeRow(matrix, player);
+        if (_isStrikeRow) return player;
+
+        const _isStrikeCol = isStrikeCol(matrix, player);
+        if (_isStrikeCol) return player;
+
+        const _isStrikeDiagonals = isStrikeDiagonals(matrix, player);
+        if (_isStrikeDiagonals) return player;
     }
 
     return null;
