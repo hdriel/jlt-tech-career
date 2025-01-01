@@ -4,13 +4,13 @@ module.exports.getMatrixOutput = (matrix) => {
     let output = '';
 
     for (let i = 0; i < matrix.length; i++) {
-        let row = '';
+        let r = '';
 
         for (let j = 0; j < matrix[i].length; j++) {
-            row += matrix[i][j] + (j === matrix[i].length - 1 ? '' : ' ');
+            r += matrix[i][j] + (j === matrix[i].length - 1 ? '' : ' ');
         }
 
-        output += row + '\n';
+        output += r + '\n';
     }
 
     return output + '\n';
